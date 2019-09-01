@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React from 'react'
+import { Route, Router, Switch } from 'react-router-dom'
+import { createGlobalStyle } from 'styled-components'
+import { createBrowserHistory } from 'history'
 
-export default App;
+import { Users } from './routes'
+
+const history = createBrowserHistory()
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
+  body {
+    margin: 0;
+  }
+`
+
+export default (props) =>
+  <Router history={history}>
+    <GlobalStyle />
+    <Switch>
+      <Route exact path='/users' component={Users} />
+    </Switch>
+  </Router>
